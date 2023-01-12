@@ -25,6 +25,10 @@ def novo_pet(request):
 
         #TODO: validar os dados e adicionar mensagens de erros
 
+        if(len(nome.strip()) == 0 or len(estado.strip()) == 0 or len(cidade.strip()) == 0 or len(telefone.strip()) == 0):
+            messages.add_message(request, constants.ERROR, 'Preencha os campos obrigatórios!')
+            return redirect('novo_pet')
+        
         pet = Pet(
             usuario = request.user,
             foto = foto,
